@@ -41,6 +41,25 @@ final class APISession {
         return task
     }
     
+    fileprivate func receiveData(_ data: Data, for task: URLSessionTask) {
+        lock.lock()
+        defer { lock.unlock() }
+        delegateConnectors[task]?.appendData(data)
+    }
+    
+    fileprivate func progress(_ progress: Double, for task: URLSessionTask) {
+        lock.lock()
+        defer { lock.unlock() }
+        delegateConnectors[task]?.progress(progress)
+    }
+    
+    fileprivate func complete(for task: URLSessionTask) {
+        lock.lock()
+        defer { lock.unlock() }
+        delegateConnectors[task]?.complete(task)
+        delegateConnectors[task] = nil
+    }
+
     private struct DelegateConnector {
         let progress: ProgressHandler
         private let success: SuccessHandler
@@ -79,25 +98,6 @@ final class APISession {
         }
     }
     
-    fileprivate func receiveData(_ data: Data, for task: URLSessionTask) {
-        lock.lock()
-        defer { lock.unlock() }
-        delegateConnectors[task]?.appendData(data)
-    }
-    
-    fileprivate func progress(_ progress: Double, for task: URLSessionTask) {
-        lock.lock()
-        defer { lock.unlock() }
-        delegateConnectors[task]?.progress(progress)
-    }
-    
-    fileprivate func complete(for task: URLSessionTask) {
-        lock.lock()
-        defer { lock.unlock() }
-        delegateConnectors[task]?.complete(task)
-        delegateConnectors[task] = nil
-    }
-
     private final class SessionDelegate: NSObject, URLSessionDataDelegate {
         func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
             APISession.shared.progress(Double(totalBytesSent) / Double(totalBytesExpectedToSend), for: task)
