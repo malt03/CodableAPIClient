@@ -1,5 +1,5 @@
 //
-//  APIRequest+Request.swift
+//  APIRequest+run.swift
 //  CodableAPIClient
 //
 //  Created by Koji Murata on 2020/01/06.

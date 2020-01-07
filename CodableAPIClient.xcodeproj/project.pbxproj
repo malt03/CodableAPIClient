@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED961CDB23C429C1001F6739 /* APIRequest+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961CD623C429C0001F6739 /* APIRequest+Request.swift */; };
+		ED961CDB23C429C1001F6739 /* APIRequest+run.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961CD623C429C0001F6739 /* APIRequest+run.swift */; };
 		ED961CDC23C429C1001F6739 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961CD723C429C0001F6739 /* Method.swift */; };
 		ED961CDD23C429C1001F6739 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961CD823C429C0001F6739 /* APIRequest.swift */; };
 		ED961CDE23C429C1001F6739 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961CD923C429C0001F6739 /* APIError.swift */; };
@@ -53,7 +53,7 @@
 
 /* Begin PBXFileReference section */
 		"CodableAPIClient::CodableAPIClient::Product" /* CodableAPIClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CodableAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED961CD623C429C0001F6739 /* APIRequest+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIRequest+Request.swift"; sourceTree = "<group>"; };
+		ED961CD623C429C0001F6739 /* APIRequest+run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIRequest+run.swift"; sourceTree = "<group>"; };
 		ED961CD723C429C0001F6739 /* Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 		ED961CD823C429C0001F6739 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		ED961CD923C429C0001F6739 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 				ED961D1E23C42C3A001F6739 /* APISession */,
 				ED961CD923C429C0001F6739 /* APIError.swift */,
 				ED961CD823C429C0001F6739 /* APIRequest.swift */,
-				ED961CD623C429C0001F6739 /* APIRequest+Request.swift */,
+				ED961CD623C429C0001F6739 /* APIRequest+run.swift */,
 				ED961CDA23C429C0001F6739 /* Errors.swift */,
 				ED961CD723C429C0001F6739 /* Method.swift */,
 			);
@@ -303,7 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				ED961CDB23C429C1001F6739 /* APIRequest+Request.swift in Sources */,
+				ED961CDB23C429C1001F6739 /* APIRequest+run.swift in Sources */,
 				ED961CDD23C429C1001F6739 /* APIRequest.swift in Sources */,
 				ED961CDE23C429C1001F6739 /* APIError.swift in Sources */,
 				ED961CDF23C429C1001F6739 /* Errors.swift in Sources */,
