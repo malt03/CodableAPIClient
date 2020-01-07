@@ -24,6 +24,10 @@
 		ED961D1C23C42B13001F6739 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961D1823C42B13001F6739 /* ErrorResponse.swift */; };
 		ED961D2223C42D08001F6739 /* APISession.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961D2123C42D08001F6739 /* APISession.swift */; };
 		ED961D2423C46CCE001F6739 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961D2323C46CCE001F6739 /* PostRequest.swift */; };
+		ED961D2623C46E76001F6739 /* DeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961D2523C46E76001F6739 /* DeleteRequest.swift */; };
+		ED961D2823C46E80001F6739 /* GetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961D2723C46E80001F6739 /* GetRequest.swift */; };
+		ED961D2A23C46E8A001F6739 /* PatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961D2923C46E8A001F6739 /* PatchRequest.swift */; };
+		ED961D2C23C46E92001F6739 /* PutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961D2B23C46E92001F6739 /* PutRequest.swift */; };
 		OBJ_31 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +74,10 @@
 		ED961D1823C42B13001F6739 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		ED961D2123C42D08001F6739 /* APISession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISession.swift; sourceTree = "<group>"; };
 		ED961D2323C46CCE001F6739 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
+		ED961D2523C46E76001F6739 /* DeleteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRequest.swift; sourceTree = "<group>"; };
+		ED961D2723C46E80001F6739 /* GetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRequest.swift; sourceTree = "<group>"; };
+		ED961D2923C46E8A001F6739 /* PatchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchRequest.swift; sourceTree = "<group>"; };
+		ED961D2B23C46E92001F6739 /* PutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutRequest.swift; sourceTree = "<group>"; };
 		OBJ_18 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +138,10 @@
 			isa = PBXGroup;
 			children = (
 				ED961D2323C46CCE001F6739 /* PostRequest.swift */,
+				ED961D2523C46E76001F6739 /* DeleteRequest.swift */,
+				ED961D2723C46E80001F6739 /* GetRequest.swift */,
+				ED961D2923C46E8A001F6739 /* PatchRequest.swift */,
+				ED961D2B23C46E92001F6739 /* PutRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -292,7 +304,11 @@
 			files = (
 				ED961D1C23C42B13001F6739 /* ErrorResponse.swift in Sources */,
 				ED961D2423C46CCE001F6739 /* PostRequest.swift in Sources */,
+				ED961D2A23C46E8A001F6739 /* PatchRequest.swift in Sources */,
+				ED961D2623C46E76001F6739 /* DeleteRequest.swift in Sources */,
 				ED961D1B23C42B13001F6739 /* APIRequest+Extensions.swift in Sources */,
+				ED961D2C23C46E92001F6739 /* PutRequest.swift in Sources */,
+				ED961D2823C46E80001F6739 /* GetRequest.swift in Sources */,
 				ED961CFF23C42A9F001F6739 /* AppDelegate.swift in Sources */,
 				ED961D0123C42A9F001F6739 /* SceneDelegate.swift in Sources */,
 				ED961D0323C42A9F001F6739 /* ContentView.swift in Sources */,

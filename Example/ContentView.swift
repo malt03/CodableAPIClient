@@ -9,18 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Button(action: {
-            PostRequest().run(progress: { (p) in
-                print(p)
-            }, success: { (response) in
-                print(response)
-            }, failure: { (error) in
-                print(error)
-                if let responseData = error.rawResponse, let text = String(bytes: responseData, encoding: .utf8) {
-                    print(text)
-                }
-            })
-        }, label: { Text("Request") })
+        VStack {
+            Button(action: {
+                PostRequest().run(progress: { print($0) }, success: { print($0) }, failure: { print($0) } )
+            }, label: { Text("Post") })
+
+            Button(action: {
+                DeleteRequest().run(progress: { print($0) }, success: { print($0) }, failure: { print($0) } )
+            }, label: { Text("Delete") })
+
+            Button(action: {
+                GetRequest().run(progress: { print($0) }, success: { print($0) }, failure: { print($0) } )
+            }, label: { Text("Get") })
+
+            Button(action: {
+                PatchRequest().run(progress: { print($0) }, success: { print($0) }, failure: { print($0) } )
+            }, label: { Text("Patch") })
+
+            Button(action: {
+                PutRequest().run(progress: { print($0) }, success: { print($0) }, failure: { print($0) } )
+            }, label: { Text("Put") })
+        }
     }
 }
 
