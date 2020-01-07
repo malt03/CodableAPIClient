@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct APIError<ResponseType: Decodable> {
+public struct APIError<ResponseType: Decodable>: Error {
     public private(set) var error: Error
     public private(set) var response: ResponseType?
     public private(set) var rawResponse: Data?
@@ -23,4 +23,10 @@ public struct APIError<ResponseType: Decodable> {
         rawResponse = nil
         response = nil
     }
+}
+
+extension APIError: LocalizedError {
+  public var errorDescription: String? {
+    return error.localizedDescription
+  }
 }
