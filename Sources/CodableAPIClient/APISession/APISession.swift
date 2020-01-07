@@ -17,7 +17,7 @@ final class APISession {
     private let session: URLSession
     private let sessionDelegate: SessionDelegate
     
-    init() {
+    private init() {
         sessionDelegate = SessionDelegate()
         session = URLSession(configuration: .ephemeral, delegate: sessionDelegate, delegateQueue: .main)
     }
@@ -41,7 +41,7 @@ final class APISession {
         return task
     }
     
-    struct DelegateConnector {
+    private struct DelegateConnector {
         let progress: ProgressHandler
         private let success: SuccessHandler
         private let failure: FailureHandler

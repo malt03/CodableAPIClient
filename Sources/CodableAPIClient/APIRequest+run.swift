@@ -8,8 +8,8 @@
 import Foundation
 
 extension APIRequest {
-    var uploadURL: URL { baseUrl.appendingPathComponent(path) }
-    func createRequest() -> URLRequest {
+    private var uploadURL: URL { baseUrl.appendingPathComponent(path) }
+    private func createRequest() -> URLRequest {
         var request = URLRequest(url: uploadURL)
         
         request.httpMethod = method.raw

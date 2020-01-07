@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Errors: Error {
+enum Errors: Error {
     case unexpectedMimeType(String?)
     case emptyResponse
     case unexpected
