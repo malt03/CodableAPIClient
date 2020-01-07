@@ -11,7 +11,7 @@ struct PutRequest: APIRequest {
     var method: HTTPMethod { .put }
     var path: String { "/put" }
     
-    var parameters: Parameters { Parameters(a: "foo", b: "bar") }
+    var bodyParameters: Parameters { Parameters(a: "foo", b: "bar") }
     
     typealias ResponseType = Response
 

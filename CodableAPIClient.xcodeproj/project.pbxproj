@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED48A7B523C4792B00CAFF06 /* MoreCodable in Frameworks */ = {isa = PBXBuildFile; productRef = ED48A7B423C4792B00CAFF06 /* MoreCodable */; };
+		ED48A7B723C47A7600CAFF06 /* NoValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED48A7B623C47A7600CAFF06 /* NoValue.swift */; };
 		ED961CDB23C429C1001F6739 /* APIRequest+run.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961CD623C429C0001F6739 /* APIRequest+run.swift */; };
 		ED961CDC23C429C1001F6739 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961CD723C429C0001F6739 /* Method.swift */; };
 		ED961CDD23C429C1001F6739 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961CD823C429C0001F6739 /* APIRequest.swift */; };
@@ -57,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		"CodableAPIClient::CodableAPIClient::Product" /* CodableAPIClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CodableAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED48A7B623C47A7600CAFF06 /* NoValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoValue.swift; sourceTree = "<group>"; };
 		ED961CD623C429C0001F6739 /* APIRequest+run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIRequest+run.swift"; sourceTree = "<group>"; };
 		ED961CD723C429C0001F6739 /* Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 		ED961CD823C429C0001F6739 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
+				ED48A7B523C4792B00CAFF06 /* MoreCodable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +195,7 @@
 				ED961CD623C429C0001F6739 /* APIRequest+run.swift */,
 				ED961CDA23C429C0001F6739 /* Errors.swift */,
 				ED961CD723C429C0001F6739 /* Method.swift */,
+				ED48A7B623C47A7600CAFF06 /* NoValue.swift */,
 			);
 			name = CodableAPIClient;
 			path = Sources/CodableAPIClient;
@@ -211,6 +216,9 @@
 			dependencies = (
 			);
 			name = CodableAPIClient;
+			packageProductDependencies = (
+				ED48A7B423C4792B00CAFF06 /* MoreCodable */,
+			);
 			productName = CodableAPIClient;
 			productReference = "CodableAPIClient::CodableAPIClient::Product" /* CodableAPIClient.framework */;
 			productType = "com.apple.product-type.framework";
@@ -273,6 +281,9 @@
 				Base,
 			);
 			mainGroup = OBJ_5;
+			packageReferences = (
+				ED48A7B323C4792B00CAFF06 /* XCRemoteSwiftPackageReference "MoreCodable" */,
+			);
 			productRefGroup = OBJ_14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -321,6 +332,7 @@
 			files = (
 				ED961CDB23C429C1001F6739 /* APIRequest+run.swift in Sources */,
 				ED961CDD23C429C1001F6739 /* APIRequest.swift in Sources */,
+				ED48A7B723C47A7600CAFF06 /* NoValue.swift in Sources */,
 				ED961CDE23C429C1001F6739 /* APIError.swift in Sources */,
 				ED961CDF23C429C1001F6739 /* Errors.swift in Sources */,
 				ED961CDC23C429C1001F6739 /* Method.swift in Sources */,
@@ -410,7 +422,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.malt03.Example;
@@ -470,7 +485,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.malt03.Example;
@@ -493,7 +511,10 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = CodableAPIClient.xcodeproj/CodableAPIClient_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -521,7 +542,10 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = CodableAPIClient.xcodeproj/CodableAPIClient_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -602,7 +626,8 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				USE_HEADERMAP = NO;
 			};
 			name = Release;
@@ -647,6 +672,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ED48A7B323C4792B00CAFF06 /* XCRemoteSwiftPackageReference "MoreCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tattn/MoreCodable.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ED48A7B423C4792B00CAFF06 /* MoreCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED48A7B323C4792B00CAFF06 /* XCRemoteSwiftPackageReference "MoreCodable" */;
+			productName = MoreCodable;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = OBJ_1 /* Project object */;
 }

@@ -11,7 +11,7 @@ struct PatchRequest: APIRequest {
     var method: HTTPMethod { .patch }
     var path: String { "/patch" }
     
-    var parameters: Parameters { Parameters(a: "foo", b: "bar") }
+    var bodyParameters: Parameters { Parameters(a: "foo", b: "bar") }
     
     typealias ResponseType = Response
 

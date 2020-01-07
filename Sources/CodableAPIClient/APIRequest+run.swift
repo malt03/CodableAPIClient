@@ -6,9 +6,13 @@
 //
 
 import Foundation
+import MoreCodable
 
 extension APIRequest {
-    private var uploadURL: URL { baseUrl.appendingPathComponent(path) }
+    private var uploadURL: URL {
+        let components = URLComponents(url: baseUrl.appendingPathComponent(path), resolvingAgainstBaseURL: false)!
+        
+    }
     private func createRequest() -> URLRequest {
         var request = URLRequest(url: uploadURL)
         
@@ -45,7 +49,7 @@ extension APIRequest {
         let request = createRequest()
         let uploadData: Data
         do {
-            uploadData = try encoder.encode(parameters)
+            uploadData = try encoder.encode(bodyParameters)
         } catch {
             failureWrapper(APIErrorType(error: error))
             return nil

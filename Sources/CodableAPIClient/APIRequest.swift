@@ -9,11 +9,13 @@ import Foundation
 
 public protocol APIRequest {
     associatedtype ResponseType: Decodable
-    associatedtype ParametersType: Encodable
+    associatedtype QueryParametersType: Encodable
+    associatedtype BodyParametersType: Encodable
 
     var method: HTTPMethod { get }
     var path: String { get }
-    var parameters: ParametersType { get }
+    var queryParameters: QueryParametersType { get }
+    var bodyParameters: BodyParametersType { get }
 
 
     associatedtype ErrorResponseType: Decodable
@@ -29,4 +31,9 @@ public protocol APIRequest {
     
     var encoder: JSONEncoder { get }
     var decoder: JSONDecoder { get }
+}
+
+extension APIRequest {
+    public var queryParameters: NoValue { NoValue() }
+    public var bodyParameters: NoValue { NoValue() }
 }

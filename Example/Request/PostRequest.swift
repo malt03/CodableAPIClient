@@ -11,10 +11,10 @@ struct PostRequest: APIRequest {
     var method: HTTPMethod { .post }
     var path: String { "/post" }
     
-    var parameters: Parameters { Parameters(a: "foo", b: "bar") }
+    var bodyParameters: Parameters { Parameters(a: "foo", b: "bar") }
     
     typealias ResponseType = Response
-
+    
     struct Parameters: Codable {
         let a: String
         let b: String

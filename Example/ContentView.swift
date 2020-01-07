@@ -11,7 +11,9 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Button(action: {
-                PostRequest().run(progress: { print($0) }, success: { print($0) }, failure: { print($0) } )
+                print(PostRequest().hoge())
+                print(PostRequest().bodyParameters)
+//                PostRequest().run(progress: { print($0) }, success: { print($0) }, failure: { print($0) } )
             }, label: { Text("Post") })
 
             Button(action: {

@@ -11,7 +11,7 @@ struct DeleteRequest: APIRequest {
     var method: HTTPMethod { .delete }
     var path: String { "/delete" }
     
-    var parameters: Parameters { Parameters(a: "foo", b: "bar") }
+    var bodyParameters: Parameters { Parameters(a: "foo", b: "bar") }
     
     typealias ResponseType = Response
 
