@@ -23,6 +23,7 @@
 		ED961D1B23C42B13001F6739 /* APIRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961D1723C42B13001F6739 /* APIRequest+Extensions.swift */; };
 		ED961D1C23C42B13001F6739 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961D1823C42B13001F6739 /* ErrorResponse.swift */; };
 		ED961D1D23C42B13001F6739 /* HttpBinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961D1A23C42B13001F6739 /* HttpBinRequest.swift */; };
+		ED961D2223C42D08001F6739 /* APISession.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED961D2123C42D08001F6739 /* APISession.swift */; };
 		OBJ_31 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		ED961D1723C42B13001F6739 /* APIRequest+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIRequest+Extensions.swift"; sourceTree = "<group>"; };
 		ED961D1823C42B13001F6739 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		ED961D1A23C42B13001F6739 /* HttpBinRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpBinRequest.swift; sourceTree = "<group>"; };
+		ED961D2123C42D08001F6739 /* APISession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISession.swift; sourceTree = "<group>"; };
 		OBJ_18 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +134,14 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		ED961D1E23C42C3A001F6739 /* APISession */ = {
+			isa = PBXGroup;
+			children = (
+				ED961D2123C42D08001F6739 /* APISession.swift */,
+			);
+			path = APISession;
+			sourceTree = "<group>";
+		};
 		OBJ_14 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +173,7 @@
 		OBJ_8 /* CodableAPIClient */ = {
 			isa = PBXGroup;
 			children = (
+				ED961D1E23C42C3A001F6739 /* APISession */,
 				ED961CD923C429C0001F6739 /* APIError.swift */,
 				ED961CD823C429C0001F6739 /* APIRequest.swift */,
 				ED961CD623C429C0001F6739 /* APIRequest+Request.swift */,
@@ -297,6 +308,7 @@
 				ED961CDE23C429C1001F6739 /* APIError.swift in Sources */,
 				ED961CDF23C429C1001F6739 /* Errors.swift in Sources */,
 				ED961CDC23C429C1001F6739 /* Method.swift in Sources */,
+				ED961D2223C42D08001F6739 /* APISession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

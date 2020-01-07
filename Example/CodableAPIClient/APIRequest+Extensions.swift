@@ -13,7 +13,7 @@ extension APIRequest {
     var headers: [String: String] { [:] }
 
     func didBeginRequest(task: URLSessionUploadTask) {}
-    func didProgress(progress: Progress) {}
+    func didProgress(progress: Double) {}
     func didSuccess(response: ResponseType) {}
     func didFailure(error: APIError<ErrorResponse>) {}
 

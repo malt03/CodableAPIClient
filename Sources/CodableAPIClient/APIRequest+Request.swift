@@ -22,12 +22,13 @@ extension APIRequest {
         return request
     }
     
+    @discardableResult
     public func run(
-        progress: ((Progress) -> Void)? = nil,
+        progress: ((Double) -> Void)? = nil,
         success: ((ResponseType) -> Void)? = nil,
         failure: ((APIErrorType) -> Void)? = nil
-    ) {
-        func progressWrapper(_ p: Progress) {
+    ) -> URLSessionUploadTask? {
+        func progressWrapper(_ p: Double) {
             progress?(p)
             self.didProgress(progress: p)
         }
@@ -47,36 +48,40 @@ extension APIRequest {
             uploadData = try encoder.encode(parameters)
         } catch {
             failureWrapper(APIErrorType(error: error))
-            return
+            return nil
         }
         
-        let task = URLSession.shared.uploadTask(with: request, from: uploadData) { responseData, response, error in
-            if let error = error {
-                failureWrapper(APIErrorType(error: error, rawResponse: responseData, decoder: self.decoder))
-                return
-            }
-            guard let response = response as? HTTPURLResponse else {
-                failureWrapper(APIErrorType(error: Errors.unexpected))
-                return
-            }
-            if response.mimeType != "application/json" {
-                failureWrapper(APIErrorType(error: Errors.unexpectedMimeType(response.mimeType), rawResponse: responseData, decoder: self.decoder))
-                return
-            }
-            
-            guard let responseData = responseData else {
-                failureWrapper(APIErrorType(error: Errors.emptyResponse))
-                return
-            }
-            
-            do {
-                let response = try self.decoder.decode(ResponseType.self, from: responseData)
-                successWrapper(response)
-            } catch {
-                failureWrapper(APIErrorType(error: error, rawResponse: responseData, decoder: self.decoder))
-                return
-            }
-        }
+        let task = APISession.shared.upload(
+            request: request,
+            data: uploadData,
+            progress: { progress in
+                progressWrapper(progress)
+            },
+            success: { response, responseData in
+                if response.mimeType != "application/json" {
+                    failureWrapper(APIErrorType(error: Errors.unexpectedMimeType(response.mimeType), rawResponse: responseData, decoder: self.decoder))
+                    return
+                }
+                
+                guard let responseData = responseData else {
+                    failureWrapper(APIErrorType(error: Errors.emptyResponse))
+                    return
+                }
+                
+                do {
+                    let response = try self.decoder.decode(ResponseType.self, from: responseData)
+                    successWrapper(response)
+                } catch {
+                    failureWrapper(APIErrorType(error: error, rawResponse: responseData, decoder: self.decoder))
+                    return
+                }
+            },
+            failure: { error, data in
+                failureWrapper(APIErrorType(error: error, rawResponse: data, decoder: self.decoder))
+            })
+
         didBeginRequest(task: task)
+     
+        return task
     }
 }
