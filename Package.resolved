@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "URLQueryItemsCoder",
+        "repositoryURL": "https://github.com/malt03/URLQueryItemsCoder.git",
+        "state": {
+          "branch": null,
+          "revision": "b5a7e11b3cf4d86949a0e2f8f719f5fbb9a0efc9",
+          "version": "0.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
