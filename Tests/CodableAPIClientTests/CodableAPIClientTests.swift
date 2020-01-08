@@ -3,10 +3,17 @@ import XCTest
 
 final class CodableAPIClientTests: XCTestCase {
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(CodableAPIClient().text, "Hello, World!")
+        let semaphore = DispatchSemaphore(value: 0)
+        DeleteRequest().run(progress: { (p) in
+            print(p)
+        }, success: { (r) in
+            print(r)
+            semaphore.signal()
+        }, failure: { (e) in
+            print(e)
+            semaphore.signal()
+        })
+        semaphore.wait()
     }
 
     static var allTests = [

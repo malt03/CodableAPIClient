@@ -6,15 +6,20 @@
 //
 
 import Foundation
-import MoreCodable
+import URLQueryItemsCoder
 
 extension APIRequest {
-    private var uploadURL: URL {
-        let components = URLComponents(url: baseUrl.appendingPathComponent(path), resolvingAgainstBaseURL: false)!
+    private func createUploadURL() throws -> URL {
+        let url = baseUrl.appendingPathComponent(path)
         
+        if method != .get { return url }
+
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        components.queryItems = try URLQueryItemsEncoder().encode(parameters)
+        return components.url!
     }
-    private func createRequest() -> URLRequest {
-        var request = URLRequest(url: uploadURL)
+    private func createRequest() throws -> URLRequest {
+        var request = URLRequest(url: try createUploadURL())
         
         request.httpMethod = method.raw
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -24,6 +29,10 @@ extension APIRequest {
         }
         
         return request
+    }
+    private func createUploadData(with encoder: JSONEncoder) throws -> Data {
+        if method == .get { return Data(count: 0) }
+        return try encoder.encode(parameters)
     }
     
     @discardableResult
@@ -46,10 +55,11 @@ extension APIRequest {
         }
          
         
-        let request = createRequest()
+        let request: URLRequest
         let uploadData: Data
         do {
-            uploadData = try encoder.encode(bodyParameters)
+            request = try createRequest()
+            uploadData = try createUploadData(with: encoder)
         } catch {
             failureWrapper(APIErrorType(error: error))
             return nil

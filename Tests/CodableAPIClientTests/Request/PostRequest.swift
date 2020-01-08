@@ -11,7 +11,7 @@ struct PostRequest: APIRequest {
     var method: HTTPMethod { .post }
     var path: String { "/post" }
     
-    var bodyParameters: Parameters { Parameters(a: "foo", b: "bar") }
+    var parameters: Parameters { Parameters(a: "foo", b: "bar") }
     
     typealias ResponseType = Response
     
