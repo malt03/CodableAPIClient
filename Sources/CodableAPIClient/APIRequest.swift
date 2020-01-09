@@ -25,7 +25,7 @@ public protocol APIRequest {
 
     func didBeginRequest(task: URLSessionUploadTask)
     func didProgress(progress: Double)
-    func didSuccess(response: ResponseType)
+    func didSuccess(response: ResponseType, rawResponse: Data)
     func didFailure(error: APIErrorType)
     
     var encoder: JSONEncoder { get }

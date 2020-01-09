@@ -43,16 +43,16 @@ extension APIRequest {
     @discardableResult
     public func run(
         progress: ((Double) -> Void)? = nil,
-        success: ((ResponseType) -> Void)? = nil,
+        success: ((ResponseType, Data) -> Void)? = nil,
         failure: ((APIErrorType) -> Void)? = nil
     ) -> URLSessionUploadTask? {
         func progressWrapper(_ p: Double) {
             progress?(p)
             self.didProgress(progress: p)
         }
-        func successWrapper(_ r: ResponseType) {
-            success?(r)
-            self.didSuccess(response: r)
+        func successWrapper(_ r: ResponseType, _ d: Data) {
+            success?(r, d)
+            self.didSuccess(response: r, rawResponse: d)
         }
         func failureWrapper(_ e: APIErrorType) {
             failure?(e)
@@ -89,7 +89,7 @@ extension APIRequest {
                 
                 do {
                     let response = try self.decoder.decode(ResponseType.self, from: responseData)
-                    successWrapper(response)
+                    successWrapper(response, responseData)
                 } catch {
                     failureWrapper(APIErrorType(error: error, rawResponse: responseData, decoder: self.decoder))
                     return
