@@ -15,7 +15,10 @@ extension APIRequest {
         if method != .get { return url }
 
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-        components.queryItems = try URLQueryItemsEncoder().encode(parameters)
+        let queryItems = try URLQueryItemsEncoder().encode(parameters)
+        if queryItems.isEmpty { return url }
+        
+        components.queryItems = queryItems
         return components.url!
     }
     private func createRequest() throws -> URLRequest {
@@ -23,6 +26,7 @@ extension APIRequest {
         
         request.httpMethod = method.raw
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         for (field, value) in headers {
             request.setValue(value, forHTTPHeaderField: field)

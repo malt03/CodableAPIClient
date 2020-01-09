@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import CodableAPIClient
+@testable import CodableAPIClient
 
-final class CallChecker<ResponseType: Equatable, ErrorType: Equatable>: Equatable, CustomStringConvertible {
+final class CallChecker<ResponseType: Equatable>: Equatable, CustomStringConvertible {
     var description: String {
         """
         progressCallback: \(progressCallback.map { String(describing: $0) } ?? "nil")
@@ -21,7 +21,7 @@ final class CallChecker<ResponseType: Equatable, ErrorType: Equatable>: Equatabl
         """
     }
     
-    static func == (lhs: CallChecker<ResponseType, ErrorType>, rhs: CallChecker<ResponseType, ErrorType>) -> Bool {
+    static func == (lhs: CallChecker<ResponseType>, rhs: CallChecker<ResponseType>) -> Bool {
         return lhs.progressCallback == rhs.progressCallback &&
             lhs.successCallback == rhs.successCallback &&
             lhs.failureCallback == rhs.failureCallback &&
@@ -33,19 +33,19 @@ final class CallChecker<ResponseType: Equatable, ErrorType: Equatable>: Equatabl
     
     var progressCallback: Double?
     var successCallback: ResponseType?
-    var failureCallback: ErrorType?
+    var failureCallback: String?
     
     var didBeginRequestFunc: URL?
     var didProgressFunk: Double?
     var didSuccessFunk: ResponseType?
-    var didFailureFunk: ErrorType?
+    var didFailureFunk: String?
 
     init() {}
     init(
         _ requested: String?,
         _ progress: Double?,
         _ success: ResponseType?,
-        _ failure: ErrorType?
+        _ failure: String?
     ) {
         self.progressCallback = progress
         self.successCallback = success
@@ -59,13 +59,21 @@ final class CallChecker<ResponseType: Equatable, ErrorType: Equatable>: Equatabl
 
 extension APIError: Equatable where ResponseType: Equatable {
     public static func == (lhs: APIError<ResponseType>, rhs: APIError<ResponseType>) -> Bool {
+        if lhs.error is HTTPStatusCodeError || rhs.error is HTTPStatusCodeError {
+            guard
+                let lhsError = lhs.error as? HTTPStatusCodeError,
+                let rhsError = rhs.error as? HTTPStatusCodeError
+                else { return false }
+            if lhsError != rhsError { return false }
+        }
+        
         return lhs.response == rhs.response &&
             lhs.rawResponse == rhs.rawResponse
     }
 }
 
 protocol CallCheckableAPIRequest: APIRequest where ResponseType: Equatable, ErrorResponseType == ErrorResponse {
-    var callChecker: CallChecker<ResponseType, APIErrorType> { get set }
+    var callChecker: CallChecker<ResponseType> { get set }
 }
 
 extension CallCheckableAPIRequest {
@@ -79,7 +87,7 @@ extension CallCheckableAPIRequest {
         callChecker.didSuccessFunk = response
     }
     func didFailure(error: APIErrorType) {
-        callChecker.didFailureFunk = error
+        callChecker.didFailureFunk = error.localizedDescription
     }
     
     func runWithCallCheck(completion: @escaping () -> Void) {
@@ -89,7 +97,7 @@ extension CallCheckableAPIRequest {
             self.callChecker.successCallback = $0
             completion()
         }, failure: {
-            self.callChecker.failureCallback = $0
+            self.callChecker.failureCallback = $0.localizedDescription
             completion()
         })
     }

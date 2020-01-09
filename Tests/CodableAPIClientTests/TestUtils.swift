@@ -31,3 +31,7 @@ func AssertEqual<T: Equatable & CustomStringConvertible>(expected: T, actual: T,
         XCTAssert(false, title + "\n" + lineDiffs.joined(separator: "\n"))
     }
 }
+
+protocol Runnable {
+    func run()
+}

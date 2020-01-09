@@ -94,6 +94,11 @@ final class APISession {
                 failure(Errors.unexpected, receivedData)
                 return
             }
+            if !(200..<300).contains(response.statusCode) {
+                failure(HTTPStatusCodeError(rawValue: response.statusCode) ?? .unknown, receivedData)
+                return
+            }
+            
             success(response, receivedData)
         }
     }

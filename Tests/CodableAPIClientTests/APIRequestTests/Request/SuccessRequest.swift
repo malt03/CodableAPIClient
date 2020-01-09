@@ -8,7 +8,7 @@
 import CodableAPIClient
 
 struct SuccessRequest: CallCheckableAPIRequest {
-    var callChecker = CallChecker<Response, APIError<ErrorResponseType>>()
+    var callChecker = CallChecker<ResponseType>()
 
     var method: HTTPMethod
     var path: String { method.path }
