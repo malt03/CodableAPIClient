@@ -7,4 +7,4 @@
 
 import Foundation
 
-struct ErrorResponse: Decodable {}
+struct ErrorResponse: Equatable, Decodable {}

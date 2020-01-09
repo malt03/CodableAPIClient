@@ -7,20 +7,22 @@
 
 import CodableAPIClient
 
-struct PostRequest: APIRequest {
+struct PostRequest: CallCheckableAPIRequest {
+    var callChecker = CallChecker<Response, APIError<ErrorResponseType>>()
+    
     var method: HTTPMethod { .post }
     var path: String { "/post" }
     
-    var parameters: Parameters { Parameters(a: "foo", b: "bar") }
+    var parameters: Parameters
     
     typealias ResponseType = Response
     
-    struct Parameters: Codable {
+    struct Parameters: Equatable, Codable {
         let a: String
         let b: String
     }
 
-    struct Response: Decodable {
+    struct Response: Equatable, Decodable {
         let json: Parameters
     }
 }

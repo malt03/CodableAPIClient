@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "CodableAPIClient", targets: ["CodableAPIClient"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/malt03/URLQueryItemsCoder.git", from: "0.0.1"),
+        .package(url: "https://github.com/malt03/URLQueryItemsCoder.git", from: "0.0.2"),
     ],
     targets: [
         .target(name: "CodableAPIClient", dependencies: ["URLQueryItemsCoder"]),
