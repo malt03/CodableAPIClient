@@ -29,7 +29,8 @@ final class APIRequestTestCase<APIRequestType: CallCheckableAPIRequest>: Runnabl
         let semaphore = DispatchSemaphore(value: 0)
         request.runWithCallCheck { semaphore.signal() }
         semaphore.wait()
+        
+        usleep(10) // wait callding didxxx
         AssertEqual(expected: expected, actual: request.callChecker, request.path)
-        sleep(1)
     }
 }
