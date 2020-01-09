@@ -1,7 +1,14 @@
+//
+//  APIRequestTests.swift
+//  CodableAPIClientTests
+//
+//  Created by Koji Murata on 2020/01/09.
+//
+
 import XCTest
 @testable import CodableAPIClient
 
-final class CodableAPIClientTests: XCTestCase {
+final class APIRequestTests: XCTestCase {
     let testCases: [Runnable] = [
         // Success
         APIRequestTestCase("Success", SuccessRequest(method: .delete), "http://localhost/delete",        1, .init(args: .nil(), json: .init()), nil),
