@@ -3,11 +3,11 @@ import XCTest
 
 final class CodableAPIClientTests: XCTestCase {
     let testCases: [AnyTestCase] = [
-        TestCase(DeleteRequest(parameters: .init(a: "c", b: "d")), "https://httpbin.org/delete",        1, .init(json: .init(a: "c", b: "d")), nil).any(),
-        TestCase(GetRequest(parameters: .init(a: "c", b: "d")),    "https://httpbin.org/get?a=c&b=d", nil, .init(args: .init(a: "c", b: "d")), nil).any(),
-        TestCase(PatchRequest(parameters: .init(a: "c", b: "d")),  "https://httpbin.org/patch",         1, .init(json: .init(a: "c", b: "d")), nil).any(),
-        TestCase(PostRequest(parameters: .init(a: "c", b: "d")),   "https://httpbin.org/post",          1, .init(json: .init(a: "c", b: "d")), nil).any(),
-        TestCase(PutRequest(parameters: .init(a: "c", b: "d")),    "https://httpbin.org/put",           1, .init(json: .init(a: "c", b: "d")), nil).any(),
+        TestCase(SuccessRequest(method: .delete), "https://httpbin.org/delete",        1, .init(args: .nil(), json: .init()), nil).any(),
+        TestCase(SuccessRequest(method: .get),    "https://httpbin.org/get?a=c&b=d", nil, .init(args: .init(), json: nil),    nil).any(),
+        TestCase(SuccessRequest(method: .patch),  "https://httpbin.org/patch",         1, .init(args: .nil(), json: .init()), nil).any(),
+        TestCase(SuccessRequest(method: .post),   "https://httpbin.org/post",          1, .init(args: .nil(), json: .init()), nil).any(),
+        TestCase(SuccessRequest(method: .put),    "https://httpbin.org/put",           1, .init(args: .nil(), json: .init()), nil).any(),
     ]
     
     func testExample() {

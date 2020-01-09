@@ -1,13 +1,13 @@
 //
-//  GetRequest.swift
-//  Example
+//  StatusCodeRequest.swift
+//  CodableAPIClientTests
 //
-//  Created by Koji Murata on 2020/01/07.
+//  Created by Koji Murata on 2020/01/09.
 //
 
 import CodableAPIClient
 
-struct GetRequest: CallCheckableAPIRequest {
+struct StatusCodeRequest: CallCheckableAPIRequest {
     var callChecker = CallChecker<Response, APIError<ErrorResponseType>>()
 
     var method: HTTPMethod { .get }
