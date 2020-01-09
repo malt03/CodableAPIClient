@@ -93,8 +93,8 @@ extension CallCheckableAPIRequest {
     func runWithCallCheck(completion: @escaping () -> Void) {
         run(progress: {
             self.callChecker.progressCallback = $0
-        }, success: { (response, _) in
-            self.callChecker.successCallback = response
+        }, success: {
+            self.callChecker.successCallback = $0
             completion()
         }, failure: {
             self.callChecker.failureCallback = $0.localizedDescription
