@@ -17,7 +17,6 @@ public protocol APIRequest {
 
 
     associatedtype ErrorResponseType: Decodable
-    typealias APIErrorType = APIError<ErrorResponseType>
 
     var baseUrl: URL { get }
     var headers: [String: String] { get }
@@ -26,7 +25,7 @@ public protocol APIRequest {
     func didBeginRequest(task: URLSessionUploadTask)
     func didProgress(progress: Double)
     func didSuccess(response: ResponseType, rawResponse: Data)
-    func didFailure(error: APIErrorType)
+    func didFailure(error: Error, response: ErrorResponseType?, rawResponse: Data?)
     
     var encoder: JSONEncoder { get }
     var decoder: JSONDecoder { get }

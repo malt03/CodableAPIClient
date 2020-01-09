@@ -44,7 +44,7 @@ extension APIRequest {
     public func run(
         progress: ((Double) -> Void)? = nil,
         success: ((ResponseType) -> Void)? = nil,
-        failure: ((APIErrorType) -> Void)? = nil
+        failure: ((Error, ErrorResponseType?) -> Void)? = nil
     ) -> URLSessionUploadTask? {
         func progressWrapper(_ p: Double) {
             progress?(p)
@@ -54,9 +54,10 @@ extension APIRequest {
             success?(r)
             self.didSuccess(response: r, rawResponse: d)
         }
-        func failureWrapper(_ e: APIErrorType) {
-            failure?(e)
-            self.didFailure(error: e)
+        func failureWrapper(_ e: Error, _ d: Data?) {
+            let r = d.flatMap { try? decoder.decode(ErrorResponseType.self, from: $0) }
+            failure?(e, r)
+            self.didFailure(error: e, response: r, rawResponse: d)
         }
          
         
@@ -66,7 +67,7 @@ extension APIRequest {
             request = try createRequest()
             uploadData = try createUploadData(with: encoder)
         } catch {
-            failureWrapper(APIErrorType(error: error))
+            failureWrapper(error, nil)
             return nil
         }
         
@@ -78,12 +79,12 @@ extension APIRequest {
             },
             success: { response, responseData in
                 if response.mimeType != "application/json" {
-                    failureWrapper(APIErrorType(error: Errors.unexpectedMimeType(response.mimeType), rawResponse: responseData, decoder: self.decoder))
+                    failureWrapper(Errors.unexpectedMimeType(response.mimeType), responseData)
                     return
                 }
                 
                 guard let responseData = responseData else {
-                    failureWrapper(APIErrorType(error: Errors.emptyResponse))
+                    failureWrapper(Errors.emptyResponse, nil)
                     return
                 }
                 
@@ -91,12 +92,12 @@ extension APIRequest {
                     let response = try self.decoder.decode(ResponseType.self, from: responseData)
                     successWrapper(response, responseData)
                 } catch {
-                    failureWrapper(APIErrorType(error: error, rawResponse: responseData, decoder: self.decoder))
+                    failureWrapper(error, responseData)
                     return
                 }
             },
-            failure: { error, data in
-                failureWrapper(APIErrorType(error: error, rawResponse: data, decoder: self.decoder))
+            failure: { error, responseData in
+                failureWrapper(error, responseData)
             })
 
         didBeginRequest(task: task)

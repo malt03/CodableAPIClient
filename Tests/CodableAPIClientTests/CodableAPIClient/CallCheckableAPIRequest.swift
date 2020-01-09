@@ -57,21 +57,6 @@ final class CallChecker<ResponseType: Equatable>: Equatable, CustomStringConvert
     }
 }
 
-extension APIError: Equatable where ResponseType: Equatable {
-    public static func == (lhs: APIError<ResponseType>, rhs: APIError<ResponseType>) -> Bool {
-        if lhs.error is HTTPStatusCodeError || rhs.error is HTTPStatusCodeError {
-            guard
-                let lhsError = lhs.error as? HTTPStatusCodeError,
-                let rhsError = rhs.error as? HTTPStatusCodeError
-                else { return false }
-            if lhsError != rhsError { return false }
-        }
-        
-        return lhs.response == rhs.response &&
-            lhs.rawResponse == rhs.rawResponse
-    }
-}
-
 protocol CallCheckableAPIRequest: APIRequest where ResponseType: Equatable, ErrorResponseType == ErrorResponse {
     var callChecker: CallChecker<ResponseType> { get set }
 }
@@ -86,7 +71,7 @@ extension CallCheckableAPIRequest {
     func didSuccess(response: ResponseType, rawResponse: Data) {
         callChecker.didSuccessFunk = response
     }
-    func didFailure(error: APIErrorType) {
+    func didFailure(error: Error, response: ErrorResponseType?, rawResponse: Data?) {
         callChecker.didFailureFunk = error.localizedDescription
     }
     
@@ -96,8 +81,8 @@ extension CallCheckableAPIRequest {
         }, success: {
             self.callChecker.successCallback = $0
             completion()
-        }, failure: {
-            self.callChecker.failureCallback = $0.localizedDescription
+        }, failure: { (error, _) in
+            self.callChecker.failureCallback = error.localizedDescription
             completion()
         })
     }
