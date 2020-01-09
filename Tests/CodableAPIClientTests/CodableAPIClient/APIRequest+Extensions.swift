@@ -9,7 +9,7 @@ import Foundation
 import CodableAPIClient
 
 extension APIRequest {
-    var baseUrl: URL { URL(string: "https://httpbin.org")! }
+    var baseUrl: URL { URL(string: "http://localhost")! }
     var headers: [String: String] { [:] }
     
     var timeoutInterval: TimeInterval? { nil }
