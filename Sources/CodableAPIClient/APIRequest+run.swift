@@ -23,7 +23,8 @@ extension APIRequest {
     }
     private func createRequest() throws -> URLRequest {
         var request = URLRequest(url: try createUploadURL())
-        
+        if let timeoutInterval = timeoutInterval { request.timeoutInterval = timeoutInterval }
+
         request.httpMethod = method.raw
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")

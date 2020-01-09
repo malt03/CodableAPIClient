@@ -21,6 +21,7 @@ public protocol APIRequest {
 
     var baseUrl: URL { get }
     var headers: [String: String] { get }
+    var timeoutInterval: TimeInterval? { get }
 
     func didBeginRequest(task: URLSessionUploadTask)
     func didProgress(progress: Double)

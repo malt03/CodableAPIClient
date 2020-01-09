@@ -19,6 +19,11 @@ final class CodableAPIClientTests: XCTestCase {
     let unexpectedMimeTypeTestCases: [Runnable] = [
         APIRequestTestCase(XMLRequest(), "https://httpbin.org/xml", nil, nil, "Unexpected Mime Type: application/xml"),
     ]
+    
+    let delayTestCases: [Runnable] = [
+        APIRequestTestCase(DelayRequest(delay: 2, timeoutInterval: 1), "https://httpbin.org/delay/2", nil, nil,    "The request timed out."),
+        APIRequestTestCase(DelayRequest(delay: 2, timeoutInterval: 3), "https://httpbin.org/delay/2", nil, .init(), nil),
+    ]
 
     func testSuccess() {
         successTestCases.forEach { $0.run() }
@@ -30,6 +35,10 @@ final class CodableAPIClientTests: XCTestCase {
     
     func testUnexpectedMimeType() {
         unexpectedMimeTypeTestCases.forEach { $0.run() }
+    }
+
+    func testDelay() {
+        delayTestCases.forEach { $0.run() }
     }
 
     static var allTests = [

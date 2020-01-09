@@ -11,6 +11,8 @@ import CodableAPIClient
 extension APIRequest {
     var baseUrl: URL { URL(string: "https://httpbin.org")! }
     var headers: [String: String] { [:] }
+    
+    var timeoutInterval: TimeInterval? { nil }
 
     var encoder: JSONEncoder { JSONEncoder() }
     var decoder: JSONDecoder { JSONDecoder() }
