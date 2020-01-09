@@ -15,6 +15,10 @@ final class CodableAPIClientTests: XCTestCase {
         APIRequestTestCase(StatusCodeRequest(statusCode: 400), "https://httpbin.org/status/400", nil, nil,     "400 Bad Request"),
         APIRequestTestCase(StatusCodeRequest(statusCode: 500), "https://httpbin.org/status/500", nil, nil,     "500 Internal Server Error"),
     ]
+    
+    let unexpectedMimeTypeTestCases: [Runnable] = [
+        APIRequestTestCase(XMLRequest(), "https://httpbin.org/xml", nil, nil, "Unexpected Mime Type: application/xml"),
+    ]
 
     func testSuccess() {
         successTestCases.forEach { $0.run() }
@@ -22,6 +26,10 @@ final class CodableAPIClientTests: XCTestCase {
 
     func testStatusCode() {
         statusCodeTestCases.forEach { $0.run() }
+    }
+    
+    func testUnexpectedMimeType() {
+        unexpectedMimeTypeTestCases.forEach { $0.run() }
     }
 
     static var allTests = [
