@@ -19,7 +19,7 @@ final class APISession {
     
     private init() {
         sessionDelegate = SessionDelegate()
-        session = URLSession(configuration: .ephemeral, delegate: sessionDelegate, delegateQueue: .main)
+        session = URLSession(configuration: .ephemeral, delegate: sessionDelegate, delegateQueue: nil)
     }
     
     private var delegateConnectors = [URLSessionTask: DelegateConnector]()
