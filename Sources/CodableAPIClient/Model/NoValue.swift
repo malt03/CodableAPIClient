@@ -7,4 +7,6 @@
 
 import Foundation
 
-public struct NoValue: Codable {}
+public struct NoValue: Codable {
+    public init() {}
+}
