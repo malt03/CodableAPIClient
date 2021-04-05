@@ -110,3 +110,6 @@ struct ExampleRequest: APIRequest {
 ```bash
 docker run -p 80:80 kennethreitz/httpbin
 ```
+
+## Test
+Edit the Schema for Test, set the App Language in Options to English, and run tests.
